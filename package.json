@@ -1,0 +1,27 @@
+{
+  "name": "valnime",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Fush1ren", 
+    "url": "https://github.com/Fush1ren"
+  }, 
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.0.13",
+    "next": "14.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-youtube": "^10.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10",
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}
