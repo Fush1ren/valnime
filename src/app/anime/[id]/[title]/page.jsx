@@ -9,40 +9,46 @@ const AnimeDetailWithTitle = ({params: {id, title}}) => {
     const [ anime, setAnime ] = useState()
     const [ chara, setChara ] = useState()
     const [ showAllData, setShowAllData] = useState(false);
-
-    //const characters = await getAnimeRes(`anime/${id}/characters`)
     
     const getAnime = async () => {
         return setAnime(await getAnimeRes(`anime/${id}`))
     }
 
-    const getChara = async() => {
-        return setChara( await getAnimeRes(`anime/${id}/characters`))
+    const getChara = async () => {
+        const data = []
+        let rawSeiyuu = await getAnimeRes(`anime/${id}/characters`)
+        for(let i = 0; i < rawSeiyuu.data?.length; i++){
+            for(let j = 0; j < rawSeiyuu.data[i].voice_actors.length; j++){
+                if(rawSeiyuu.data[i].voice_actors[j].language === "Japanese"){
+                    rawSeiyuu.data[i].voice_actors = rawSeiyuu.data[i].voice_actors[j]
+                }
+            }
+        }
+        return setChara(rawSeiyuu)
     }
+
     useEffect(() => {
         getAnime()
-    }, [])
-    
-    useEffect(() => {
         getChara()
     }, [])
-    
+
     const renderData = showAllData ? chara?.data : chara?.data.slice(0, 4);
-    console.log(anime)
     
     return(
         <div>
             <div className="pt-4 px-4">
                 <h3 className="text-white font-bold md:text-2xl text-xl md:text-left text-center">{anime?.data.title}</h3>
             </div>
-            <div className="flex p-4 sm:flex-row flex-col sm:items-start items-center max-w-full">
+            <div className="flex p-4 md:flex-row flex-col sm:items-start items-center max-w-full">
                 <div className="pt-px flex flex-col text-white w-72 border-2 border-gray-800 rounded-lg">
-                    <Image src={anime?.data.images.jpg.image_url} alt={anime?.data.images.webp?.image_url} 
-                        priority={true} 
-                        width={250}
-                        height={250}
-                        className="w-full rounded object-cover pb-2"
-                    />
+                    { anime?.data.images?.webp.image_url === undefined ? null :
+                        <Image src={anime?.data.images?.webp.image_url} alt="poster"
+                            loading={"lazy"}
+                            width={250}
+                            height={250}
+                            className="w-full rounded object-cover pb-2"
+                        />
+                    }
                     <div className="text-white py-4 px-4">     
                         <h3 className="font-bold text-center pb-2">INFORMATION</h3>
                         <h3>Type : {anime?.data.type}</h3>
@@ -70,10 +76,14 @@ const AnimeDetailWithTitle = ({params: {id, title}}) => {
                             return(`${arr.name}`)
                         }).join(', ')}
                         </h3>
+                        <h3>Studio : {anime?.data.studios?.map((arr) => {
+                            return(`${arr.name}`)
+                        }).join(', ')}
+                        </h3>
                     </div>
                 </div>
                 <div className="flex text-white sm:pl-6 sm:pr-4 px-4 pt-px w-full flex-col gap-4 sm:text-left text-center sm:items-start items-center sm:text-lg text-base">
-                    <VideoPlayer youtubeId={anime?.data.trailer.youtube_id} />
+                    <VideoPlayer youtubeId={anime?.data.trailer?.youtube_id} />
                     <h3 className="font-bold ">{anime?.data.duration} | {anime?.data.rating}</h3>
                     <p className="text-justify">{anime?.data.synopsis}</p>
                 </div>
@@ -89,30 +99,35 @@ const AnimeDetailWithTitle = ({params: {id, title}}) => {
                     }
                 </div>
                 <div className="flex flex-col p-2">
-                    <div className="grid md:grid-cols-2 grid-cols-1 text-white">
+                    <div className="grid lg:grid-cols-2 grid-cols-1 text-white">
                         {renderData?.map((item, index) => {
                             return(
                                 <div className="flex justify-between border-2 border-gray-800" key={index}>
                                     <div className="flex md:flex-row flex-col md:gap-4 gap-2 md:p-2 py-2 px-4">
-                                        <div className="flex items-center"> 
-                                            <Image className="md:w-20 md:h-32 w-28 h-28 max-w-20 max-h-32" src={item.character.images.jpg.image_url} priority={true} width={80} height={80} alt="" />
+                                        <div className="flex items-center max-w-25 min-w-25"> 
+                                            <Image className="md:w-full w-min border rounded-lg border-none" src={item?.character.images?.webp.image_url} priority={true} width={80} height={80} alt="character" />
                                         </div>
-                                        <div className="flex flex-col w-40 gap-2 md:p-0 py-2"> 
+                                        <div className="flex flex-col md:w-40 gap-2 md:p-0 py-2"> 
                                             <h3 className="md:text-lg text-sm font-normal">{item.character.name}</h3>
                                             <h3 className="md:text-sm text-xs font-thin">{item.role}</h3>
                                         </div>
                                     </div>
-                                    <div className="flex flex-row md:p-2 px-4">
-                                        {item.voice_actors[0] !== undefined
+                                    <div className="flex flex-row lg:p-2 px-4">
+                                        {item.voice_actors !== undefined
                                             ? 
-                                            <div className="flex md:flex-row flex-col md:gap-4 gap-2 md:p-2 py-2 px-4"> 
-                                                <div className="flex items-center">                                                             
-                                                    <Image className="md:w-20 md:h-32 w-28 h-28 max-w-20 max-h-32" src={item.voice_actors[0].person.images.jpg.image_url} priority={true} width={80} height={80} alt="" />
-                                                </div>
-                                                <div className="flex flex-col md:w-40 w-24 gap-2 md:p-0 py-2"> 
-                                                    <p className="md:text-lg text-sm font-normal">{item.voice_actors[0].person.name}</p>
-                                                    <p className="md:text-sm text-xs font-thin">{item.voice_actors[0].language}</p>
-                                                </div>
+                                            <div className="">
+                                                {
+                                                    item?.voice_actors.person?.images === undefined ? null :
+                                                    <div className="flex md:flex-row flex-col md:gap-4 gap-2 md:p-0 p-2 px-4"> 
+                                                        <div className="flex items-center max-w-25 min-w-25">                                                             
+                                                            <Image className="md:w-full w-min border rounded-lg border-none" src={item?.voice_actors.person?.images?.jpg.image_url} priority={true} width={80} height={80} alt="seiyuu" />
+                                                        </div>
+                                                        <div className="flex flex-col md:w-40 w-24 gap-2 md:py-0 py-2"> 
+                                                            <p className="md:text-lg text-sm font-normal">{item.voice_actors.person?.name}</p>
+                                                            <p className="md:text-sm text-xs font-thin">{item.voice_actors.language}</p>
+                                                        </div>
+                                                    </div>
+                                                } 
                                             </div>
                                             : null
                                         }
