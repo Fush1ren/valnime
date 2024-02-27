@@ -10,13 +10,13 @@ const InputSearch = () => {
 
     const handleSearch = (event) => {
         const keyword = searchRef.current.value
-        
+        const newKeyword = keyword.replaceAll(" ", "_")
         if(!keyword) return
         
         if(event.key === "Enter" || event.type === "click"){
             event.preventDefault()
             
-            router.push(`/search/${keyword}`)
+            router.push(`/search/${newKeyword}`)
         }
     }
 

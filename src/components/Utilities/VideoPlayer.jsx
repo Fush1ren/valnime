@@ -10,7 +10,7 @@ const VideoPlayer = ({ youtubeId }) => {
 
     return(
         <div className=" md:pt-0 pt-4 md:items-start md:w-550 w-350 items-center">
-            <YouTube 
+            <YouTube loading={"lazy"}
                 videoId={youtubeId}
                 onReady={(event) => event.target.pauseVideo()}
                 opts={option}

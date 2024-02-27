@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "Fush1ren", 
+    "name": "Fush1ren",
     "url": "https://github.com/Fush1ren"
-  }, 
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,7 +17,9 @@
     "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-youtube": "^10.1.0"
+    "react-slick": "^0.29.0",
+    "react-youtube": "^10.1.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^10",

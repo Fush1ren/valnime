@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,7 +15,25 @@ module.exports = {
       },
       width: {
         350 : "350px",
-        550 : "550px"
+        550 : "550px",
+        800 : "800px",
+        202 : "202px",
+        1200 : "1200px"
+      },
+      height: {
+        350 : "350px",
+        550 : "550px",
+      },
+      maxWidth: {
+        20 : "80px",
+        25 : "90px",
+        32 : "128px",
+        202 : "202px"
+      },
+      minWidth: {
+        20 : "80px",
+        25 : "90px",
+        32 : "128px"
       }
     },
   },

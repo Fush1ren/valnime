@@ -43,7 +43,7 @@ const AnimeDetailWithTitle = ({params: {id, title}}) => {
                 <div className="pt-px flex flex-col text-white w-72 border-2 border-gray-800 rounded-lg">
                     { anime?.data.images?.webp.image_url === undefined ? null :
                         <Image src={anime?.data.images?.webp.image_url} alt="poster"
-                            loading={"lazy"}
+                            priority
                             width={250}
                             height={250}
                             className="w-full rounded object-cover pb-2"

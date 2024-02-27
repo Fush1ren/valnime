@@ -8,7 +8,11 @@
     box-sizing: border-box;
 }
 
-img {
+body{
+    background-color: black;
+}
+
+img.card {
     transition: .3s ease all;
     -webkit-transition: .3s ease all;
     -moz-transition: .3s ease all;
@@ -16,7 +20,7 @@ img {
     -o-transition: .3s ease all;
 }
 
-img:hover {
+img.card:hover {
     scale: 102%;
 }
 

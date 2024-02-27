@@ -5,12 +5,11 @@ const MyAnimeList = ({ api }) => {
     return(
         <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 px-4"> 
         {api.data?.map((anime, index) => {
-            const Titlespace = anime.title.replaceAll(' ', '_')
-            const title = Titlespace.replaceAll(':', "_")
+            const title = anime.title.replaceAll(" ", "_").replaceAll(":","_")
             return(
-                <Link href={`/anime/${anime.mal_id}/${title}`} className="cursor-pointer text-white hover:text-indigo-400 transition-all" key={index}>
-                    <Image className="w-full max-h-64 object-cover" src={anime.images.webp.image_url} priority={true} alt="..." width={350} height={350} />
-                    <h3 className="font-bold md:text-xl text-md p-4">{anime.title}</h3>
+                <Link href={`/anime/${anime.mal_id}/${title}`} className="cursor-pointer text-white hover:text-indigo-400 transition-all text-center" key={index}>
+                    <Image className="card w-full max-h-72 object-cover rounded-lg" src={anime.images?.webp?.image_url} priority={true} alt="..." width={350} height={350} />
+                    <h3 className="md:text-lg text-md pt-2">{anime.title}</h3>
                 </Link>
             )
         })}
