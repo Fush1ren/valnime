@@ -9,7 +9,12 @@ const MyAnimeList = ({ api }) => {
             return(
                 <Link href={`/anime/${anime.mal_id}/${title}`} className="cursor-pointer text-white hover:text-indigo-400 transition-all text-center" key={index}>
                     <Image className="card w-full max-h-72 object-cover rounded-lg" src={anime.images?.webp?.image_url} priority={true} alt="..." width={350} height={350} />
-                    <h3 className="md:text-lg text-md pt-2">{anime.title}</h3>
+                    <h3 className="md:text-lg text-md pt-2">
+                        { anime.title.length >= 50 ?
+                                `${anime.title.slice(0, 50)}...` :
+                                `${anime.title}`
+                        }
+                        </h3>
                 </Link>
             )
         })}

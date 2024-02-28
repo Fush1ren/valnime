@@ -53,7 +53,14 @@ const Carousel = ({ api }) => {
                        <div className='py-2'>
                          <Image src={item.images?.webp?.image_url} alt="..." priority={true} width={350} height={350} className='card rounded-lg w-72 md:h-80 h-72'/>
                        </div>
-                        <p className=' text-lg'>{item?.title}</p>
+                       <div className=''>
+                          <p className='text-lg'>
+                            { item.title.length >= 50 ?
+                                `${item.title.slice(0, 50)}...` :
+                                `${item.title}`
+                          }
+                          </p>
+                       </div>
                     </Link>
                 )
             })}

@@ -6,10 +6,8 @@ import TopAiringAnime from "@/components/MyAnimeList/TopAiring"
 const Home = async () => {
 
   //const topAnime = await getAnimeRes("top/anime", "limit=10")
-  const topAiring = await getAnimeRes("top/anime", "filter=airing&sfw")
+  const topAiring = await getAnimeRes("top/anime", "filter=airing&sfw=true")
   const SeasonNow = await getAnimeRes("seasons/now", "limit=5")
-
-
   return (
     <div className="">
       <section className="pb-2">
