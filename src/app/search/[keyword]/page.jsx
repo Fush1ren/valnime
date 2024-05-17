@@ -4,15 +4,15 @@ import Header from "@/components/MyAnimeList/Header"
 
 const Search = async ({ params }) => {
     const { keyword } = params
-    const decodedKeyword = keyword.replace("_", " ")
-    const searchAnime = await getAnimeRes("anime",`q=${decodedKeyword}`)
+    const decodedKeyword = keyword.replaceAll("_", " ")
+    const searchAnime = await getAnimeRes("anime", `q=${decodedKeyword}&sfw=true`)
 
     return (
         <div>
-        <section>
-            <Header title={`Hasil Pencarian dari ${decodedKeyword}...`} />
-            <MyAnimeList api={searchAnime}/>
-        </section>
+            <section>
+                <Header title={`Hasil Pencarian dari ${decodedKeyword}...`} />
+                <MyAnimeList api={searchAnime} />
+            </section>
         </div>
     )
 }
