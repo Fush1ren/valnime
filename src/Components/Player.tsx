@@ -1,4 +1,4 @@
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from 'react-player/lazy';    
 
 const Player: React.FC<{url: string}> = ({url}) => {
     return(
@@ -9,10 +9,6 @@ const Player: React.FC<{url: string}> = ({url}) => {
                 :
                 <iframe className='w-[640px] h-[360px]' src={url} />
             }
-            {/* <ReactPlayer 
-                url={url}
-                controls={true}
-            /> */}
         </div>
     )
 }
