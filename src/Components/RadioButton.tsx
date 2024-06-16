@@ -8,9 +8,9 @@ const RadioButton: React.FC<{data: any, character: any, pictures: any}> = ({data
   const [selectedOption, setSelectedOption] = useState<string>('Details');
 
   return (
-    <div className="flex flex-col px-2">
-      <div className="flex space-x-4 border-b border-solid border-gray-400 text-center">
-        <label className={`transition cursor-pointer px-2 hover:text-blue-400 dark:hover:text-gray-400 flex items-start space-x-2 font-semibold ${selectedOption === 'Details' ? 'border-blue-500 border-b-2 border-solid': ''}`} >
+    <div className="flex flex-col lg:px-2">
+      <div className="flex space-x-3 lg:space-x-4 border-b border-solid border-gray-400 text-center">
+        <label className={`transition cursor-pointer lg:px-2 hover:text-blue-400 dark:hover:text-gray-400 flex items-start space-x-2 font-semibold ${selectedOption === 'Details' ? 'border-blue-500 border-b-2 border-solid': ''}`} >
           Details
           <input
             type="radio"
@@ -42,7 +42,7 @@ const RadioButton: React.FC<{data: any, character: any, pictures: any}> = ({data
         </label>
       </div>
       {selectedOption === 'Details' && (
-        <div className="mt-4 p-2">
+        <div className="lg:mt-4 lg:p-2">
           <Details data={data} />
         </div>
       )}

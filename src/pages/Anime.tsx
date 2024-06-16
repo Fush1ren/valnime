@@ -104,14 +104,14 @@ const Anime: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavba
 
     return (
         <div className=" w-full bg-primary-50 h-full text-blue-500 dark:bg-gray-700 dark:text-gray-300">
-            <div className="px-10 pt-2 pb-2">
+            <div className="px-4 lg:px-10 pt-2 pb-2">
                 <div className="flex flex-col px-2 pb-2">
-                    <h2 className="font-bold text-lg text-blue-500 dark:text-">{data.data?.title}</h2>
+                    <h2 className="font-bold text-xl text-blue-500 dark:text-">{data.data?.title}</h2>
                     <p className=" text-gray-500 font-semi-bold text-base dark:text-gray-300">{data.data?.title_english}</p>
                 </div>
-                <div className="flex flex-row pt-2">
+                <div className="flex flex-col lg:flex-row pt-2">
                     <div className="flex flex-col w-80 px-2">
-                        <div className="rounded-lg">
+                        <div className="flex items-center justify-center rounded-lg">
                             <img className=" w-[280px] h-96 rounded-lg hover:shadow-lg duration-500 shadow-lg border-2 hover:border-blue-500 border-gray-500 hover:border-2" src={data.data?.images.webp?.large_image_url} width={100} height={100} />
                         </div>
                         <div className="text-black dark:text-gray-400 py-5">
@@ -298,8 +298,8 @@ const Anime: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavba
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col pl-4 pr-2 w-[1000px]">
-                        <div className="px-2 text-gray-600 dark:text-gray-300">
+                    <div className="flex flex-row lg:flex-col lg:pl-4 lg:pr-2 w-full lg:w-[1000px]">
+                        <div className="lg:px-2 w-full text-gray-600 dark:text-gray-300">
                             <RadioButton data={dataDetails} character={character} pictures={pictures}/>
                         </div>
                     </div>

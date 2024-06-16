@@ -3,12 +3,12 @@ import Stats from "./Stats";
 const Details: React.FC<{data: any}> = ({data}) => {
     return(
         <span>
-            <div className='p-2 pb-4 w-full flex justify-center'>
+            <div className='p-2 pb-4 lg:w-full flex justify-center'>
             {
                 data?.trailer?.embed_url === null || data?.trailer?.embed_url === undefined ?
                 ''
                 :
-                <iframe className='w-[640px] h-[360px]' src={data?.trailer?.embed_url} />
+                <iframe className='w-[300px] h-[300px] lg:w-[640px] lg:h-[360px]' src={data?.trailer?.embed_url} />
             }
         </div>
             <Stats data={data} />

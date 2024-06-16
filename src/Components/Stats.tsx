@@ -2,7 +2,7 @@
 const Stats: React.FC<{data: any}> = ({data}) => {
 
     return(
-        <span className="pt-2 flex flex-row rounded-lg shadow-md dark:shadow-xl bg-gray-50 dark:bg-transparent text-black dark:text-gray-400 p-4 gap-10 justify-center">
+        <span className="pt-2 grid grid-cols-2 lg:grid-cols-4 rounded-lg shadow-md dark:shadow-xl bg-gray-50 dark:bg-transparent text-black dark:text-gray-400 p-4 gap-2 lg:gap-10 justify-center">
             <span className="w-28 text-center">
                 <span className="flex flex-col px-2">
                     <span className="bg-blue-400 text-white text-sm rounded">Score</span>

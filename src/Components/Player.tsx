@@ -5,7 +5,7 @@ const Player: React.FC<{url: string}> = ({url}) => {
         <div className='p-2 pb-4 w-full flex justify-center'>
             {
                 url === null || url === undefined ?
-                <iframe className='w-[640px] h-[360px]' src='https://youtube.com/watch?'/>
+                <iframe className='lg:w-[640px] lg:h-[360px]' src='https://youtube.com/watch?'/>
                 :
                 <iframe className='w-[640px] h-[360px]' src={url} />
             }
