@@ -1,12 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { getAnimeRes } from "../../lib/api_lib";
-import Pagination from "../../Components/Pagination";
-import { Link } from "react-router-dom";
-import Search from "../../Components/Search";
+import { useState } from "react";
+import { getAnimeRes } from "../lib/api_lib";
 
-
-const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> = ({setShowNavbar, setShowFooter, showSearch}) => {
-    const [page, setPage] = useState<number>(1);
+const Search:React.FC<{showSearch: any}> = ({showSearch}) => {
+    const [value, setValue] = useState<string>('');
     const [data, setData] = useState<any>('');
 
     const MonthList: string[] = [
@@ -15,37 +11,40 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
         'July', 'August', 'September', 
         'October', 'November', 'December'
     ]
+    
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
 
-    useLayoutEffect(() => {
-        setShowNavbar(true);
-        setShowFooter(true);
-    }, [])
-
-    const animeSeason = async () => {
-        try {
-            const datas = await getAnimeRes("seasons/now", `page=${page}&sfw=true`);
-            return setData(datas);
-        } catch (e) {
-            console.log(e)
+        if(value.trim() !== '') {
+            try{
+                const searchAnime = await getAnimeRes("anime", `q=${value}&sfw=true`)
+                setData(searchAnime)
+            } catch (e: any) {
+                console.log(e);
+            }
         }
+    };
+
+    const handleSearch = (event: any) => {
+        
+        if(event.key === "Enter"){
+            event.preventDefault()
+            handleSubmit(event);
+        }
+
     }
 
-    useEffect(() => {
-        let timer = setTimeout(() => {
-            animeSeason()
-        }, 1000)
+    const handleChange = (e: any) => {
+        setValue(e.target.value);
+    }
 
-        return () => clearTimeout(timer)
-    }, [page])
 
     return(
-        <div className="bg-white min-h-screen dark:bg-gray-700 dark:text-gray-200 h-full">
-            <div className={`py-2 ${!showSearch ? 'inline' : 'hidden'}`}>
-                <div className="px-10 pt-4">
-                    <h1 className=" font-bold text-2xl">Seasons Now</h1>
-                    <Pagination page={page} lastPage={data.pagination?.last_visible_page} setPage={setPage} />
-                </div>
-                <div className="p-2 mx-2 md:p-4 lg:p-4 lg:mx-6 text-gray-600 dark:text-gray-200">
+        <div className={` ${!showSearch ? 'hidden' : 'inline'} h-full dark:text-black px-4`}>
+            <div className="flex justify-center p-2">
+                <input className="w-[330px] p-2 text-sm rounded border border-black outline-blue-400 hover:border-black" type="text" placeholder="Search..." onChange={handleChange} onKeyDown={handleSearch} value={value}/>
+            </div>
+            <div className="p-2 mx-2 md:p-4 lg:p-4 lg:mx-6 text-gray-600 dark:text-gray-200">
                     <div className="grid sm:grid-rows-1 md:grid-cols-2 lg:grid-cols-3 gap-7 py-2">
                         {
                             data?.data?.map((dataApi: any, index: number) => {
@@ -53,14 +52,14 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
                                     <div key={index} className="rounded xl:w-[370px] h-[410px] border border-gray-500 dark:bg-slate-700">
                                         <div className="flex flex-col pt-2">
                                             <div className="flex justify-center items-center h-[56px] text-lg font-bold text-black dark:text-blue-400 px-4 hover:dark:text-blue-300">
-                                                <Link to={`/anime/${dataApi?.mal_id}`} className="flex justify-center items-center">
+                                                <a href={`/anime/${dataApi?.mal_id}`} className="flex justify-center items-center">
                                                     {
                                                         dataApi?.title.length >= 50 ?
                                                         <span className="text-center">{dataApi?.title?.slice(0, 50)}...</span>
                                                         :
                                                         <span className="text-center">{dataApi?.title}</span>
                                                     }
-                                                </Link>
+                                                </a>
                                             </div>
                                             <div className="flex flex-row text-sm font-medium text-gray-500 dark:text-white gap-2 justify-center py-2 px-4">
                                                 <div>
@@ -120,9 +119,9 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
                                                 </div>
                                             </div>
                                             <div className="flex flex-row text-sm font-normal text-gray-500 dark:text-white gap-2">
-                                                <Link to={`/anime/${dataApi?.mal_id}`}>
+                                                <a href={`/anime/${dataApi?.mal_id}`}>
                                                     <img className="w-[170px] h-[240px]" src={dataApi?.images.webp?.large_image_url} width={150} height={300}/>
-                                                </Link>
+                                                </a>
                                                 <div className="w-[190px] h-[235px] overflow-hidden hover:overflow-y-scroll flex flex-col gap-1 pt-2">
                                                     <div className="text-xs font-light">
                                                         {
@@ -226,10 +225,8 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
                         }
                     </div>
                 </div>
-            </div>
-            <Search showSearch={showSearch} />
         </div>
     )
-}
+};
 
-export default SeasonsNow;
+export default Search;

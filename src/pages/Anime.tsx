@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAnimeRes } from "../lib/api_lib";
 import RadioButton from "../Components/RadioButton";
+import Search from "../Components/Search";
 
 type Details = {
     'score'? : String,
@@ -17,7 +18,7 @@ type Details = {
     }
 }
 
-const Anime: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar, setShowFooter}) => {
+const Anime: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> = ({setShowNavbar, setShowFooter, showSearch}) => {
     const [data, setData] = useState<any>('');
     const [character, setCharacter] = useState<any>('');
     const [pictures, setPictures] = useState<any>('');
@@ -305,6 +306,7 @@ const Anime: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavba
                     </div>
                 </div>
             </div>
+            <Search showSearch={showSearch} />
         </div>
     )
 }

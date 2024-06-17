@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import CardAnime from "../Components/CardAnime";
 import { getAnimeRes } from "../lib/api_lib";
 import { useEffect, useLayoutEffect, useState } from "react";
+import Search from "../Components/Search";
 
-const Home: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar, setShowFooter}) => {
+const Home: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> = ({setShowNavbar, setShowFooter, showSearch}) => {
     const [data, setData] = useState<any>('');
     const [dataSeason, setDataSeason] = useState<any>('');
 
@@ -43,7 +44,7 @@ const Home: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar
 
     return(
         <div className="h-full min-h-screen bg-white dark:bg-gray-700 dark:text-gray-200">
-            <div className="h-full">
+            <div className={` ${!showSearch ? 'inline' : 'hidden'} h-full`}>
                 <div>
                     <div className="px-2 lg:px-10 pt-10 flex flex-row items-baseline justify-between">
                         <h2 className="text-xl font-bold text-black dark:text-gray-200">Seasons Now</h2>
@@ -67,6 +68,7 @@ const Home: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar
                     <CardAnime api={data} />
                 </div>
             </div>
+            <Search showSearch={showSearch} />
         </div>
     )
 }

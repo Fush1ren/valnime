@@ -12,17 +12,19 @@ import Footer from './Components/Footer';
 const App: React.FC = () => {
   const [showNavbar, setShowNavbar] = useState<boolean>(true);
   const [showFooter, setShowFooter] = useState<boolean>(true);
+  
+  const [showSearch, setShowSearch] = useState<boolean>(false);
 
 
   return(
     <Router>
-      {showNavbar && <Navbar />}
+      {showNavbar && <Navbar setShowSearch={setShowSearch} />}
         <div className='font-poppins'>
           <Routes>
-            <Route path='/' element={<Home setShowNavbar={setShowNavbar} setShowFooter={setShowFooter}/>} />
-            <Route path='/top' element={<Top setShowNavbar={setShowNavbar} setShowFooter={setShowFooter}/>} /> 
-            <Route path='/anime/:title' element={<Anime setShowNavbar={setShowNavbar} setShowFooter={setShowFooter}/>}/>
-            <Route path='/anime/seasons/now' element={<SeasonsNow setShowNavbar={setShowNavbar} setShowFooter={setShowFooter}/>}/>
+            <Route path='/' element={<Home setShowNavbar={setShowNavbar} setShowFooter={setShowFooter} showSearch={showSearch} />} />
+            <Route path='/top' element={<Top setShowNavbar={setShowNavbar} setShowFooter={setShowFooter} showSearch={showSearch} />}/> 
+            <Route path='/anime/:title' element={<Anime setShowNavbar={setShowNavbar} setShowFooter={setShowFooter} showSearch={showSearch} />}/>
+            <Route path='/anime/seasons/now' element={<SeasonsNow setShowNavbar={setShowNavbar} setShowFooter={setShowFooter} showSearch={showSearch}/>}/>
             <Route path='*' element={<NotFound setShowNavbar={setShowNavbar} setShowFooter={setShowFooter}/>}/>
           </Routes>
         </div>

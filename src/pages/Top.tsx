@@ -1,9 +1,10 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { getAnimeRes } from "../lib/api_lib";
 import { Link } from "react-router-dom";
+import Search from "../Components/Search";
 
 
-const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar, setShowFooter}) => {
+const Top: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> = ({setShowNavbar, setShowFooter, showSearch}) => {
     const [data, setData] = useState<any>('');
     const MonthList: string[] = [
         'January', 'February', 'March', 
@@ -33,7 +34,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar,
 
     return(
         <div className="min-h-screen dark:bg-gray-700 dark:text-gray-200">
-            <div className="p-2 mx-2 md:p-4 lg:p-4 lg:mx-8 text-gray-600 dark:text-gray-200">
+            <div className={`p-2 mx-2 md:p-4 lg:p-4 lg:mx-8 text-gray-600 dark:text-gray-200 ${!showSearch ? 'inline' : 'hidden'}`}>
                 <h2 className="text-gray-600 font-bold text-2xl pb-5 dark:text-gray-400">Top Anime Series</h2>
                 <div className="grid sm:grid-rows-1 md:grid-cols-2 lg:grid-cols-3 gap-7 py-2">
                     {
@@ -96,7 +97,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar,
                                                 }
                                             </div>
                                         </div>
-                                        <div className="bg-gray-400 dark:bg-gray-900 py-1">
+                                        <div className="h-[24px] bg-gray-400 dark:bg-gray-900 py-1">
                                             <div className="flex flex-row text-xs font-normal text-gray-500 dark:text-white gap-2 justify-center">
                                                 {
                                                     dataApi?.genres === null || dataApi?.genres === undefined ?
@@ -179,7 +180,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar,
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row justify-center text-black dark:text-gray-200  bg-gray-400 dark:bg-gray-800 h-[43px] items-center rounded-b">
+                                        <div className="flex flex-row justify-center text-black dark:text-gray-200  bg-gray-400 dark:bg-gray-800 h-[45px] items-center rounded-b">
 
                                             <div className="w-[100px] text-center flex flex-row gap-1">
                                                 <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -198,7 +199,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar,
                                             </div>
                                             <div className="w-[100px] text-center flex flex-row gap-1">
                                                 <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                                                    <path fillRule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clipRule="evenodd"/>
                                                 </svg>
 
                                                 {
@@ -220,6 +221,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any}> = ({setShowNavbar,
                     }
                 </div>
             </div>
+            <Search showSearch={showSearch} />
         </div>
     )
 }
