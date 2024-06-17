@@ -19,11 +19,11 @@ interface CardAnimeProps {
 const CardAnime: React.FC<CardAnimeProps> = ({ api }) => {
     return (
         <div className="px-2 py-5 lg:p-10 text-black min-h-[676px]">
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 lg:gap-5">
                 {
                     api.data?.map((datas, index) => {
                         return (
-                            <Link to={`/anime/${datas?.mal_id}`} key={index} className=" box-border relative group duration-500 cursor-pointer group overflow-hidden hover:relative text-gray-50 h-56 lg:h-72 lg:w-56 rounded-2xl border-black dark:border-blue-200 border-2 hover:duration-700 hover:scale-105 shadow-lg">
+                            <Link to={`/anime/${datas?.mal_id}`} key={index} className=" box-border relative group duration-500 cursor-pointer group overflow-hidden hover:relative text-gray-50 h-56 lg:h-72 md:w-[184px] lg:w-56 rounded-2xl border-black dark:border-blue-200 border-2 hover:duration-700 hover:scale-105 shadow-lg">
                                 <div className=" h-44">
                                     <div className=" h-full text-gray-800">
                                         <img src={datas?.images.webp?.large_image_url} className=" lg:w-full object-cover" width={180} height={200} alt="anime" />

@@ -34,7 +34,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> =
 
     return(
         <div className="min-h-screen dark:bg-gray-700 dark:text-gray-200">
-            <div className={`p-2 mx-2 md:p-4 lg:p-4 lg:mx-8 text-gray-600 dark:text-gray-200 ${!showSearch ? 'inline' : 'hidden'}`}>
+            <div className={`p-2 mx-2 md:p-4 lg:p-4 lg:mx-8 text-gray-600 dark:text-gray-200 ${!showSearch ? 'relative' : 'hidden'}`}>
                 <h2 className="text-gray-600 font-bold text-2xl pb-5 dark:text-gray-400">Top Anime Series</h2>
                 <div className="grid sm:grid-rows-1 md:grid-cols-2 lg:grid-cols-3 gap-7 py-2">
                     {
@@ -180,7 +180,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> =
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row justify-center text-black dark:text-gray-200  bg-gray-400 dark:bg-gray-800 h-[45px] items-center rounded-b">
+                                        <div className="flex flex-row justify-center text-black dark:text-gray-200  bg-gray-400 dark:bg-gray-800 h-[43px] items-center rounded-b">
 
                                             <div className="w-[100px] text-center flex flex-row gap-1">
                                                 <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -199,7 +199,7 @@ const Top: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> =
                                             </div>
                                             <div className="w-[100px] text-center flex flex-row gap-1">
                                                 <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path fillRule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clipRule="evenodd"/>
+                                                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
                                                 </svg>
 
                                                 {

@@ -44,8 +44,8 @@ const Home: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> 
 
     return(
         <div className="h-full min-h-screen bg-white dark:bg-gray-700 dark:text-gray-200">
-            <div className={` ${!showSearch ? 'inline' : 'hidden'} h-full`}>
-                <div>
+            <div className={` ${!showSearch ? 'relative' : 'hidden'} h-full`}>
+                <div className="md:px-2 lg:px-0">
                     <div className="px-2 lg:px-10 pt-10 flex flex-row items-baseline justify-between">
                         <h2 className="text-xl font-bold text-black dark:text-gray-200">Seasons Now</h2>
                         <h2 className="text-lg font-medium dark:text-gray-200 underline hover:text-blue-500">
@@ -56,7 +56,7 @@ const Home: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: any}> 
                     </div>
                     <CardAnime api={dataSeason} />
                 </div>
-                <div>
+                <div className="md:px-2 lg:px-0">
                     <div className="px-2 lg:px-10 pt-10 flex flex-row items-baseline justify-between">
                         <h2 className="text-xl font-bold text-black dark:text-gray-200">Top Anime</h2>
                         <h2 className="text-lg font-medium dark:text-gray-200 underline hover:text-blue-500">
