@@ -11,6 +11,16 @@ const Search:React.FC<{showSearch: any}> = ({showSearch}) => {
         'July', 'August', 'September', 
         'October', 'November', 'December'
     ]
+
+    function convertToAbbreviation(number: any) {
+        const formatter = new Intl.NumberFormat('en', {
+            notation: 'compact',
+            compactDisplay: 'short',
+            maximumSignificantDigits: 3
+        });
+    
+        return formatter.format(number);
+    }
     
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -61,7 +71,7 @@ const Search:React.FC<{showSearch: any}> = ({showSearch}) => {
                                                     }
                                                 </a>
                                             </div>
-                                            <div className="flex flex-row text-sm font-medium text-gray-500 dark:text-white gap-2 justify-center py-2 px-4">
+                                            <div className="flex flex-row text-xs font-medium text-gray-500 dark:text-white gap-2 justify-center py-2 px-4">
                                                 <div>
                                                     {
                                                         MonthList[dataApi?.aired?.prop?.from?.month] === null || MonthList[dataApi?.aired?.prop?.from?.month] === undefined ?
@@ -212,7 +222,7 @@ const Search:React.FC<{showSearch: any}> = ({showSearch}) => {
                                                         :
                                                         <span>
                                                             {
-                                                                dataApi?.members
+                                                                convertToAbbreviation(dataApi?.members)
                                                             }
                                                         </span>
                                                     }

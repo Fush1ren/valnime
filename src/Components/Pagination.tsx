@@ -28,7 +28,7 @@ const Pagination: React.FC<{page: any, lastPage: any, setPage: any}> = ({ page, 
     }
 
     return(
-        <div className="flex justify-center items-center py-4 px-2 gap-8 text-blue-500 dark:text-white md:text-xl text-base">
+        <div className="flex justify-center items-center py-4 gap-3 lg:px-2 lg:gap-8 text-blue-500 dark:text-white md:text-xl text-base">
             { page === 1 ?
                  <button className="transition-all text-gray-600 opacity-30 dark:text-gray-400" disabled={true}>First Page</button>
                 :

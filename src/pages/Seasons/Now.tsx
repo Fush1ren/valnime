@@ -16,6 +16,16 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
         'October', 'November', 'December'
     ]
 
+    function convertToAbbreviation(number: any) {
+        const formatter = new Intl.NumberFormat('en', {
+            notation: 'compact',
+            compactDisplay: 'short',
+            maximumSignificantDigits: 3
+        });
+    
+        return formatter.format(number);
+    }
+
     useLayoutEffect(() => {
         setShowNavbar(true);
         setShowFooter(true);
@@ -41,7 +51,7 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
     return(
         <div className="bg-white min-h-screen dark:bg-gray-700 dark:text-gray-200 h-full">
             <div className={`py-2 ${!showSearch ? 'inline' : 'hidden'}`}>
-                <div className="px-10 pt-4">
+                <div className="px-4 lg:px-10 pt-4">
                     <h1 className=" font-bold text-2xl">Seasons Now</h1>
                     <Pagination page={page} lastPage={data.pagination?.last_visible_page} setPage={setPage} />
                 </div>
@@ -62,7 +72,7 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
                                                     }
                                                 </Link>
                                             </div>
-                                            <div className="flex flex-row text-sm font-medium text-gray-500 dark:text-white gap-2 justify-center py-2 px-4">
+                                            <div className="flex flex-row text-xs lg:text-sm font-medium text-gray-500 dark:text-white gap-2 justify-center py-2 px-4">
                                                 <div>
                                                     {
                                                         MonthList[dataApi?.aired?.prop?.from?.month] === null || MonthList[dataApi?.aired?.prop?.from?.month] === undefined ?
@@ -213,7 +223,7 @@ const SeasonsNow: React.FC<{setShowNavbar: any, setShowFooter: any, showSearch: 
                                                         :
                                                         <span>
                                                             {
-                                                                dataApi?.members
+                                                                convertToAbbreviation(dataApi?.members)
                                                             }
                                                         </span>
                                                     }
